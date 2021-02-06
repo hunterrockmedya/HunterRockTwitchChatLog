@@ -12,7 +12,7 @@
 
 ayarlar.txt bilgileri;
 
-{
+```{
                                     
                 "Host": "irc.chat.twitch.tv",
                 "Port": 6667,
@@ -20,7 +20,7 @@ ayarlar.txt bilgileri;
                 "Nickname": "<name>",      ## <name> yerine oatch key'ine ait nick
                 "Authentication": "oauth:<auth>", ## Twitch Oauth Key almak için: https://twitchapps.com/tmi/
                 "MessagesOnly": False
-}
+}```
 
 # İletişim
 
