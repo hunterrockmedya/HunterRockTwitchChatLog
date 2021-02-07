@@ -3,7 +3,7 @@
 # Modül Kurulumu;
 1- Python 3.6+ Kur https://www.python.org/downloads/
 
-2- Klasör içerisinde konsol aç (shift basılıı tutarken, mouse sağ tık yap ve PowerShell/CMD penceresini burada aç) / "pip install -r requirements.txt" komutu çalıştır
+2- "pip install hunterrockwebsocket" komutu ile gerekli modülü kur.
 
 3- Çalıştırmak için SaveMessages.py dosyasını çalıştır (Eğer açılmaz ise birlikte aç/ python.exe dosyasını bul.)
 
