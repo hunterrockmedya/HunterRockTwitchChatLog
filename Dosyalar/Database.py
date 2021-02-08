@@ -9,21 +9,16 @@ class Database:
     def create_db(self):
         sql = """
         CREATE TABLE IF NOT EXISTS Messages (
-            full_message TEXT,
-            tags TEXT,
-            command TEXT,
             user TEXT,
             type TEXT,
-            params TEXT,
             channel TEXT,
             message TEXT,
             time INTEGER,
-            time_since_last REAL,
-            PRIMARY KEY(full_message, time))
+            time_since_last REAL)
         """
-        logger.debug("Veritabanı Oluşturuluyor...")
+        logger.debug("Creating Database...")
         self.execute(sql)
-        logger.debug("Veritabanı Oluşturuldu.")
+        logger.debug("Database created.")
 
     def execute(self, sql, values=None, fetch=False):
         with sqlite3.connect("TwitchLog.db") as conn:
@@ -37,4 +32,4 @@ class Database:
                 return cur.fetchall()
     
     def add_item(self, *args):
-        self.execute("INSERT INTO Messages(full_message, tags, command, user, type, params, channel, message, time, time_since_last) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", args)
+        self.execute("INSERT INTO Messages(user, type, channel, message, time, time_since_last) VALUES (?, ?, ?, ?, ?, ?)", args)

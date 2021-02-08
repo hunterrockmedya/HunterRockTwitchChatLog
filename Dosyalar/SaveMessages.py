@@ -1,5 +1,5 @@
 
-from TwitchWebsocket import TwitchWebsocket
+from HunterRockWebsocket import HunterRockWebsocket
 import random, time, json, logging, os
 
 from Log import Log
@@ -22,7 +22,7 @@ class SaveMessage:
 
         self.db = Database()
         
-        self.ws = TwitchWebsocket(host=self.host, 
+        self.ws = HunterRockWebsocket(host=self.host, 
                                   port=self.port,
                                   chan=self.chan,
                                   nick=self.nick,
@@ -44,14 +44,14 @@ class SaveMessage:
         try:
             if m.type == "366":
                 logging.info(f"Kanala Başarıyla Katıldın: #{m.channel}")
-            elif m.type == "MSG" or not self.messages_only:
+            elif m.type == "PRIVMSG" or not self.messages_only:
                 self.add_message_to_db(m, time.time() - self.last_message_t)
                 self.last_message_t = time.time()
         except Exception as e:
             logging.error(e)
             
     def add_message_to_db(self, m, time_since_last):
-        self.db.add_item(m.full_message, json.dumps(m.tags), m.command, m.user, m.type, m.params, m.channel, m.message, round(self.last_message_t), time_since_last)
+        self.db.add_item(m.user, m.type, m.channel, m.message, round(self.last_message_t), time_since_last)
 
 if __name__ == "__main__":
     SaveMessage()
