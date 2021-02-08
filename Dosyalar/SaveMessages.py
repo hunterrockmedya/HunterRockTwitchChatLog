@@ -28,7 +28,6 @@ class SaveMessage:
                                   nick=self.nick,
                                   auth=self.auth,
                                   callback=self.message_handler,
-                                  capability=["membership", "tags", "commands"],
                                   live=True)
         self.ws.start_bot()
 
@@ -51,7 +50,7 @@ class SaveMessage:
             logging.error(e)
             
     def add_message_to_db(self, m, time_since_last):
-        self.db.add_item(m.user, m.type, m.channel, m.message, round(self.last_message_t), time_since_last)
+        self.db.add_item(m.channel, m.user, m.message, round(self.last_message_t), time_since_last)
 
 if __name__ == "__main__":
     SaveMessage()

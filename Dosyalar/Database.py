@@ -9,9 +9,8 @@ class Database:
     def create_db(self):
         sql = """
         CREATE TABLE IF NOT EXISTS Messages (
-            user TEXT,
-            type TEXT,
             channel TEXT,
+            user TEXT,
             message TEXT,
             time INTEGER,
             time_since_last REAL)
@@ -32,4 +31,4 @@ class Database:
                 return cur.fetchall()
     
     def add_item(self, *args):
-        self.execute("INSERT INTO Messages(user, type, channel, message, time, time_since_last) VALUES (?, ?, ?, ?, ?, ?)", args)
+        self.execute("INSERT INTO Messages(channel, user, message, time, time_since_last) VALUES (?, ?, ?, ?, ?)", args)
